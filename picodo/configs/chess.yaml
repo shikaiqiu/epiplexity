@@ -1,0 +1,26 @@
+defaults:
+  - default
+  - _self_
+
+ds_path: chess
+downstream_ds_path: null
+num_evals: 300
+num_evals_downstream: 5
+B: 32
+T: 1_000_000_000
+T_eval: 16384
+T_downstream: 25_000_000
+T_eval_downstream: null
+wandb_project: soph_chess
+tag: chess
+wandb_mode: online
+
+model:
+  D: null
+  L: 512
+  N: 3
+  dtype: null
+
+opt:
+  lr: 1.6
+  warmup_tokens: 50_000_000

@@ -1,0 +1,57 @@
+defaults:
+  - _self_
+  - override hydra/hydra_logging: disabled
+  - override hydra/job_logging: disabled
+
+seed: 0
+B: 512
+B_student: null
+alpha_B: 0.5
+scale: null
+exponent: null
+T: null
+T_eval: null
+num_evals: 100
+ds_path: null
+wandb_project: picodo
+tag: test
+wandb_mode: online
+reinit_embed: false
+reinit_readout: false
+linear_probing: false
+train_student: false
+train_teacher: true
+save: false
+resume_from: null
+T_ckpt: null
+B_ft: null
+kl_gap: 0.0
+kl_rel_tol: 0.1
+max_kl: null
+A: null
+teacher_ema: 0.0
+student_ema: 0.0
+
+model:
+  P: null
+  P_student: null
+  D: 768
+  dh: 64
+  L: 768
+  N: 12
+  V: 50257
+  embed_init_std: 0.1
+  fsdp_enabled: false
+  dtype: null
+
+opt:
+  lr: 0.4
+  ft_lr_mult: 0.1
+  embed_lr_mult: 0.025
+  schedule: const
+  decay_frac: 1.
+  b1: 0.9
+  b2: 0.95
+  weight_decay: 0.
+  warmup_tokens: 50_000_000
+  k: null

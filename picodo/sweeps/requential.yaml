@@ -1,0 +1,68 @@
+program: main.py
+method: grid
+name: requential
+
+metric: {name: eval_loss, goal: minimize}
+
+command:
+  - ${env}
+  - python
+  - main.py
+  - -cn
+  - chess
+  - wandb_mode=online
+  - tag=natural_sweep
+  - wandb_project=requential
+  - ${args_no_hyphens}
+
+parameters:
+  "seed":
+    values: [0]
+
+  "save":
+    value: false
+
+  "train_student":
+    value: true
+
+  "train_teacher":
+    value: true
+  
+  "teacher_ema":
+    value: 50
+
+  "student_ema":
+    value: 50
+
+  "model.N":
+    values: [3, 6, 12, 24]
+
+  "model.P":
+    values: [1, 2, 5, 10, 20, 40, 60, 80, 100, 120, 140, 160]
+  
+  "A":
+    values: [8]
+    
+  "ds_path":
+    values: [chess, chess_reordered, open, cifar5m]
+
+  "opt.lr":
+    values: [2] 
+  
+  "B":
+    values: [256]
+  
+  "model.L":
+    values: [512]
+
+  "max_kl":
+    values: [0.1]
+
+  "opt.schedule":
+    values: [const]
+
+  "opt.warmup_tokens":
+    values: [16384000]
+
+  "T":
+    value: 5000000000           # 3 B

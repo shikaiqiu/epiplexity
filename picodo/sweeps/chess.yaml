@@ -1,0 +1,59 @@
+program: main.py
+method: grid
+name: chess
+
+metric: {name: eval_loss, goal: minimize}
+
+command:
+  - ${env}
+  - python
+  - main.py
+  - -cn
+  - chess
+  - wandb_mode=online
+  - tag=v5
+  - wandb_project=soph_jax
+  - ${args_no_hyphens}
+
+parameters:
+  "seed":
+    values: [0]
+
+  "train_student":
+    value: false
+
+  "model.N":
+    values: [24]
+
+  "model.P":
+    values: [10]
+
+  "B":
+    value: 256
+
+  "B_ft":
+    value: 32
+
+  "ds_path":
+    values: [chess, chess_reordered]
+
+  "downstream_ds_path":
+    values: [puzzles2000, fen2cp]
+
+  "opt.lr":
+    values: [2]
+
+  "opt.ft_lr_mult":
+    values: [1]
+
+  "opt.schedule":
+    values: [const]
+
+  "opt.warmup_tokens":
+    values: [16384000]
+
+  "T":
+    value: 5000000000
+
+  "T_downstream":
+    value: 25000000
